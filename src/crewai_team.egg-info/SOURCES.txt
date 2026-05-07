@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+src/crewai_team/__init__.py
+src/crewai_team/team.py
+src/crewai_team.egg-info/PKG-INFO
+src/crewai_team.egg-info/SOURCES.txt
+src/crewai_team.egg-info/dependency_links.txt
+src/crewai_team.egg-info/entry_points.txt
+src/crewai_team.egg-info/requires.txt
+src/crewai_team.egg-info/top_level.txt
