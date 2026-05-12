@@ -21,7 +21,7 @@ pip install -e .
 
 Set your model provider credentials as environment variables required by CrewAI before running non-dry mode.
 
-> Note: CrewAI dependencies are skipped on Android due upstream wheel support.
+> Note: CrewAI dependencies are skipped on Android due to upstream wheel support.
 > `--dry-run` still works there, while full LLM execution should be run on a
 > supported platform.
 
