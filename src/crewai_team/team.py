@@ -112,7 +112,7 @@ def main() -> None:
     except ModuleNotFoundError as exc:
         missing_module = exc.name or ""
         missing_crewai = missing_module == "crewai" or missing_module.startswith("crewai.")
-        if missing_crewai or "No module named 'crewai'" in str(exc):
+        if missing_crewai:
             raise SystemExit(
                 "CrewAI is required for non-dry runs. Install dependencies on a "
                 "supported platform, then retry."
