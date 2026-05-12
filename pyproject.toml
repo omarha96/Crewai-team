@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crewai-team"
+version = "0.1.0"
+description = "CrewAI programming team project"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "crewai>=0.114.0; platform_system != 'Android'"
+]
+
+[project.scripts]
+crewai-team = "crewai_team.team:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
