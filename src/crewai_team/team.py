@@ -1,11 +1,23 @@
 from __future__ import annotations
 
 import argparse
+from typing import TYPE_CHECKING
 
-from crewai import Agent, Crew, Process, Task
+if TYPE_CHECKING:
+    from crewai import Crew
+
+
+AGENT_ROLES = [
+    "Engineering Manager",
+    "Software Architect",
+    "Senior Developer",
+    "QA Engineer",
+]
 
 
 def create_programming_crew() -> Crew:
+    from crewai import Agent, Crew, Process, Task
+
     planner = Agent(
         role="Engineering Manager",
         goal="Plan a reliable implementation roadmap for the requested feature",
@@ -88,13 +100,22 @@ def main() -> None:
     )
 
     args = parser.parse_args()
-    crew = create_programming_crew()
 
     if args.dry_run:
         print("Programming team initialized with agents:")
-        for agent in crew.agents:
-            print(f"- {agent.role}")
+        for role in AGENT_ROLES:
+            print(f"- {role}")
         return
+
+    try:
+        crew = create_programming_crew()
+    except ModuleNotFoundError as exc:
+        if exc.name == "crewai":
+            raise SystemExit(
+                "CrewAI is required for non-dry runs. Install dependencies on a "
+                "supported platform, then retry."
+            ) from exc
+        raise
 
     result = crew.kickoff(inputs={"feature_request": args.feature_request})
     print(result)
