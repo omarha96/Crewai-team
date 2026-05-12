@@ -110,7 +110,9 @@ def main() -> None:
     try:
         crew = create_programming_crew()
     except ModuleNotFoundError as exc:
-        if "crewai" in (exc.name or "") or "crewai" in str(exc).lower():
+        missing_module = exc.name or ""
+        missing_crewai = missing_module == "crewai" or missing_module.startswith("crewai.")
+        if missing_crewai or "No module named 'crewai'" in str(exc):
             raise SystemExit(
                 "CrewAI is required for non-dry runs. Install dependencies on a "
                 "supported platform, then retry."
